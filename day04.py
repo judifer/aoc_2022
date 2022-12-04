@@ -1,6 +1,5 @@
 sections = [x.strip().split(",") for x in open("day04.txt").readlines()]
-cnt_1 = 0
-cnt_2 = 0
+cnt_1, cnt_2 = 0, 0
 
 for section in sections:
     first, second = section[0].split("-")
