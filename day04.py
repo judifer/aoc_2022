@@ -5,9 +5,8 @@ cnt_2 = 0
 for section in sections:
     first, second = section[0].split("-")
     third, fourth = section[1].split("-")
-    first, second, third, fourth = int(first), int(second), int(third), int(fourth)
-    a = set(range(first, second + 1))
-    b = set(range(third, fourth + 1))
+    a = set(range(int(first), int(second) + 1))
+    b = set(range(int(third), int(fourth) + 1))
     if a.issubset(b) or b.issubset(a):
         cnt_1 += 1
     if len(a.intersection(b)) > 0:
