@@ -3,7 +3,7 @@ cnt_1 = 0
 cnt_2 = 0
 
 for section in sections:
-    first, second= section[0].split("-")
+    first, second = section[0].split("-")
     third, fourth = section[1].split("-")
     first, second, third, fourth = int(first), int(second), int(third), int(fourth)
     if first == second:
