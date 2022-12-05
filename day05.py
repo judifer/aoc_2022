@@ -17,8 +17,8 @@ for i in ins:
     for j in range(0, many):
         piles[to - 1].append(piles[fro - 1][-1])
         piles[fro - 1].pop()
-        piles_two[to - 1].append(piles_two[fro - 1][0 - many + j])
-        piles_two[fro - 1].pop(0 - many + j)
+        piles_two[to - 1].append(piles_two[fro - 1][j - many])
+        piles_two[fro - 1].pop(j - many)
 
 pkg_one, pkg_two = "", ""
 print(f"Part one: {pkg_one.join(i[-1] for i in piles)} | Part two: {pkg_two.join(i[-1] for i in piles_two)}")
