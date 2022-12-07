@@ -1,46 +1,57 @@
-# split the input into lines, and each line at " "
 inp = [x.strip().split() for x in open("day07.txt").readlines()]
-# dictionaries for the sums of each individual dir and the immediate path available from each dir
+
 path = dict()
 sums = dict()
 
-for idx, line in enumerate(inp):
-    if line[1] == "cd":     # check for start of directory contents
-        if line[2] == "..":     # ignore those moving back to previous folder as new step
-            continue
+curr = []
+cnt = 0
+for line in inp:
+    if line[1] == "cd":
+        if line[2] == "..":
+            curr.pop()
         else:
-            path[line[2]] = []      # add dir to path
-            sums[line[2]] = 0       # add dir to sums
-            for i in range(1, len(inp) - idx):      # check the lines following our original dir
-                content = inp[idx + i]
-                if content[1] == "cd":          # finish checking contents when it moves out of dir
-                    break
-                elif content[0] == "dir":       # add included dirs to path for original dir
-                    path[line[2]].append(content[1])
-                elif content[1] == "ls":        # ignore ls
-                    continue
-                else:
-                    sums[line[2]] += int(content[0])        # add value of just this dir to sums
+            curr.append(line[2])
+            path["".join(curr)] = []
+            sums["".join(curr)] = 0
+            cnt = 0
+    elif line[1] == "ls":
+        continue
+    elif line[0] == "dir":
+        path["".join(curr)].append("".join(curr) + line[1])
+    else:
+        sums["".join(curr)] += int(line[0])
 
 total_size = dict()
-for i in sums:          # initiate each dir in dict
+for i in path:
     total_size[i] = 0
 
-def searcher(i, path, sums, cnt):   # go through every path and sum all the dirs inside it
+def searcher(i):
     if len(path[i]) > 0:
         for j in path[i]:
-            cnt += searcher(j, path, sums, cnt)     
-    cnt += sums[i]
+            searcher(j)  
+    cnt.append(sums[i])
     return cnt
 
-
-for i in path:          # initiate searcher function for each dir
-    cnt = 0
-    total_size[i] += searcher(i, path, sums, cnt)
+for i in path:
+    cnt = list()
+    cnt = searcher(i)
+    total_size[i] += sum(cnt)
 
 result = 0
-for i in total_size:                # sum all dirs smaller than 100000
+for i in total_size:
     if total_size[i] <= 100000:
         result += total_size[i]
 
-print(result)
+used_space = sum(list(sums.values()))
+disc_space = 70000000
+unused_space = 30000000
+can_use_space = disc_space - unused_space
+
+del_val = disc_space
+
+for i in total_size:
+    if (used_space - total_size[i]) <= can_use_space and total_size[i] < del_val:
+        del_path = i
+        del_val = total_size[i]
+
+print(f"Part one: {result} | Part two: {del_val}")
