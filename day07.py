@@ -45,13 +45,10 @@ for i in total_size:
 used_space = sum(list(sums.values()))
 disc_space = 70000000
 unused_space = 30000000
-can_use_space = disc_space - unused_space
-
 del_val = disc_space
 
 for i in total_size:
-    if (used_space - total_size[i]) <= can_use_space and total_size[i] < del_val:
-        del_path = i
+    if (used_space - total_size[i]) <= (disc_space - unused_space) and total_size[i] < del_val:
         del_val = total_size[i]
 
 print(f"Part one: {result} | Part two: {del_val}")
