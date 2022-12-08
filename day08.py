@@ -17,7 +17,7 @@ for y, row in enumerate(trees):
         left = [tree > col for col in trees[y][:x]]
         left_d = sorted((x - idx) if tree <= col else x for idx, col in enumerate(trees[y][:x]))
         right = [tree > col for col in trees[y][x + 1:]]
-        right_d =sorted((idx + 1) if tree <= col else (len(trees[0]) - x - 1) for idx, col in enumerate(trees[y][x + 1:]))
+        right_d = sorted((idx + 1) if tree <= col else (len(trees[0]) - x - 1) for idx, col in enumerate(trees[y][x + 1:]))
         if all(up) or all(down) or all(left) or all(right):
             vis += 1
         if up_d[0] * down_d[0] * left_d[0] * right_d[0] > distance:
