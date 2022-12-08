@@ -11,12 +11,12 @@ for y, row in enumerate(trees):
             continue
         tree = trees[y][x]
         up = [tree > row[x] for row in trees[:y]]
-        down = [tree > row[x] for row in trees[y + 1:]]
-        left = [tree > col for col in trees[y][:x]]
-        right = [tree > col for col in trees[y][x + 1:]]
         up_d = sorted((y - idx) if tree <= row[x] else y for idx, row in enumerate(trees[:y]))
+        down = [tree > row[x] for row in trees[y + 1:]]
         down_d = sorted((idx + 1) if tree <= row[x] else (len(trees) - y - 1) for idx, row in enumerate(trees[y + 1:]))
+        left = [tree > col for col in trees[y][:x]]
         left_d = sorted((x - idx) if tree <= col else x for idx, col in enumerate(trees[y][:x]))
+        right = [tree > col for col in trees[y][x + 1:]]
         right_d =sorted((idx + 1) if tree <= col else (len(trees[0]) - x - 1) for idx, col in enumerate(trees[y][x + 1:]))
         if all(up) or all(down) or all(left) or all(right):
             vis += 1
