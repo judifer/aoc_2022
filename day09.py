@@ -4,13 +4,13 @@ h, t = (0, 0), [(0, 0) for i in range(9)]
 
 def tails(h, t):
     diffy, diffx = (h[0] - t[0]), (h[1] - t[1])
-    if abs(diffy) <= 1 and abs(diffx) <= 1:
+    if abs(diffy) < 2 and abs(diffx) < 2:
         pass
-    elif abs(diffy) >= 2 and abs(diffx) >= 2:
+    elif abs(diffy) > 1 and abs(diffx) > 1:
         t = (h[0] - 1 if t[0] < h[0] else h[0] + 1, h[1] - 1 if t[1] < h[1] else h[1] + 1)
-    elif abs(diffy) >= 2:
+    elif abs(diffy) > 1:
         t = (h[0] - 1 if t[0] < h[0] else h[0] + 1, h[1])
-    elif abs(diffx) >= 2:
+    elif abs(diffx) > 1:
         t = (h[0], h[1] - 1 if t[1] < h[1] else h[1] + 1)
     return t
 
