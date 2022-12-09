@@ -3,15 +3,15 @@ dx, dy = {"R": 1, "L": -1, "U": 0, "D": 0}, {"R": 0, "L": 0, "U": -1, "D": 1}
 h, t = (0, 0), [(0, 0) for i in range(9)]
 
 def tails(h, t):
-    diffy, diffx = (h[0]-t[0]), (h[1]-t[1])
-    if abs(diffy)<=1 and abs(diffx)<=1:
+    diffy, diffx = (h[0] - t[0]), (h[1] - t[1])
+    if abs(diffy) <= 1 and abs(diffx) <= 1:
         pass
-    elif abs(diffy)>=2 and abs(diffx)>=2:
-        t = (h[0]-1 if t[0]<h[0] else h[0]+1, h[1]-1 if t[1]<h[1] else h[1]+1)
-    elif abs(diffy)>=2:
-        t = (h[0]-1 if t[0]<h[0] else h[0]+1, h[1])
-    elif abs(diffx)>=2:
-        t = (h[0], h[1]-1 if t[1]<h[1] else h[1]+1)
+    elif abs(diffy) >= 2 and abs(diffx) >= 2:
+        t = (h[0] - 1 if t[0] < h[0] else h[0] + 1, h[1] - 1 if t[1] < h[1] else h[1] + 1)
+    elif abs(diffy) >= 2:
+        t = (h[0] - 1 if t[0] < h[0] else h[0] + 1, h[1])
+    elif abs(diffx) >= 2:
+        t = (h[0], h[1] - 1 if t[1] < h[1] else h[1] + 1)
     return t
 
 visited = set([t[0]])
