@@ -32,7 +32,7 @@ for line in inp:
                 draw += 1
         x += int(a)
 
-letters = defaultdict()
+letters = defaultdict()     # for my personal sanity, this bit includes only the letters in my solution.
 letters["F"] = [
     "####",
     "#   ",
