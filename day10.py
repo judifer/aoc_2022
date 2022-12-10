@@ -4,7 +4,7 @@ x = 1
 cnt = 0
 vals = [20, 60, 100, 140, 180, 220]
 imp = 0
-grid = [["."] * 40 for _ in range(6)]
+grid = [[" "] * 40 for _ in range(6)]
 draw = 0
 
 for line in inp:
