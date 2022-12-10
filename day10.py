@@ -7,10 +7,13 @@ imp = 0
 grid = [[" "] * 40 for _ in range(6)]
 draw = 0
 
+def drawing(x, c, d):
+    if abs(x - c % 40) <= 1:
+        grid[d][c % 40] = "#"
+
 for line in inp:
     if line == "noop":
-        if abs(x - cnt % 40) <= 1:
-                grid[draw][cnt % 40] = "#"
+        drawing(x, cnt, draw)
         cnt += 1
         if cnt in vals:
             imp += cnt * x
@@ -19,8 +22,7 @@ for line in inp:
     else:
         _, a = line.split()
         for i in range(2):
-            if abs(x - cnt % 40) <= 1:
-                grid[draw][cnt % 40] = "#"
+            drawing(x, cnt, draw)
             cnt += 1
             if cnt in vals:
                 imp += cnt * x
