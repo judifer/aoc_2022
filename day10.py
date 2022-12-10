@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 inp = [x.strip() for x in open("day10.txt").readlines()]
 
 x = 1
@@ -30,6 +32,81 @@ for line in inp:
                 draw += 1
         x += int(a)
 
-print("Part one:", imp)
-for i in grid:
-    print("".join(i))
+letters = defaultdict()
+letters["F"] = [
+    "####",
+    "#   ",
+    "### ",
+    "#   ",
+    "#   ",
+    "#   "
+]
+
+letters["J"] = [
+    "  ##",
+    "   #",
+    "   #",
+    "   #",
+    "#  #",
+    " ## "
+]
+
+letters["U"] = [
+    "#  #",
+    "#  #",
+    "#  #",
+    "#  #",
+    "#  #",
+    " ## "
+]
+
+letters["B"] = [
+    "### ",
+    "#  #",
+    "### ",
+    "#  #",
+    "#  #",
+    "### "
+]
+
+letters["L"] = [
+    "#   ",
+    "#   ",
+    "#   ",
+    "#   ",
+    "#   ",
+    "####"
+]
+
+letters["R"] = [
+    "### ",
+    "#  #",
+    "#  #",
+    "### ",
+    "# # ",
+    "#  #"
+]
+
+letters["Z"] = [
+    "####",
+    "   #",
+    "  # ",
+    " #  ",
+    "#   ",
+    "####"
+]
+
+
+x = 0
+y = 0
+result = ""
+while x < (len(grid[0]) - 2):
+    letter = []
+    for i in grid:
+        letter.append("".join(i[x:x + 4]))
+    for j in letters.keys():
+        if letter == letters[j]:
+            result += j
+    x += 5
+
+print(f"Part one: {imp} | Part two: {result}")
