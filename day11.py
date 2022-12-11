@@ -26,7 +26,6 @@ for i in inp:
     falsetarget = int(falsetarget)
     operations[curr_mon].append(falsetarget)
 
-round = 0
 active = defaultdict()
 for i in monkeys.keys():
     active[i] = 0
