@@ -31,7 +31,7 @@ active = defaultdict()
 for i in monkeys.keys():
     active[i] = 0
 
-while round < 20:
+for _ in range(20):
     for i in monkeys.keys():
         for j in monkeys[i]:
             testing = operations[i][2]
@@ -59,7 +59,6 @@ while round < 20:
                 else:
                     monkeys[false_mon].append(new_num)
         monkeys[i] = list()
-    round += 1
 
 result = sorted(active.values())
 print(result[-1] * result[-2])
@@ -74,8 +73,7 @@ modifier = 1
 for i in operations.keys():
     modifier *= operations[i][2]
 
-round = 0
-while round < 10000:
+for _ in range(10000):
     for i in monkeys_2.keys():
         for j in monkeys_2[i]:
             testing = operations[i][2]
@@ -103,7 +101,6 @@ while round < 10000:
                 else:
                     monkeys_2[false_mon].append(new_num)
         monkeys_2[i] = list()
-    round += 1
 
 result = sorted(active.values())
 print(result[-1] * result[-2])
