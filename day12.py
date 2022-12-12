@@ -14,10 +14,9 @@ def generate_graph(data):
                         G.add_edge((x, y), (nex, ney), weight=data[ney][nex])
     return G
 
-def calc_paths(sourcey, goal, graph):
+def calc_paths(sourcey, goal):
     G = graph
     path = nx.shortest_path(G, source=sourcey, target=goal)
-    risk = sum(data[y][x] for x, y in path[1:])
     return len(path) - 1
 
 for y, i in enumerate(data):
@@ -28,9 +27,9 @@ for y, i in enumerate(data):
         elif j == (ord("E")- 96):
             data[y][x] = 26
             goal = (x, y)
+            
 graph = generate_graph(data)
-first_path = calc_paths(sourcey, goal, graph)
-
+first_path = calc_paths(sourcey, goal)
 paths = list()
 paths.append(first_path)
 
@@ -39,7 +38,7 @@ for y, i in enumerate(data):
         if j == (ord("a") - 96):
             sourcey = (x, y)
             try:
-                paths.append(calc_paths(sourcey, goal, graph))
+                paths.append(calc_paths(sourcey, goal))
             except:
                 pass
 
